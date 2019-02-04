@@ -18,4 +18,12 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | ba
     && npm install -g grunt \
     && npm install -g bower
 
+COPY ./import-letsencrypt.sh /tmp/import-letsencrypt.sh
+
+ENV JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+
+RUN chmod +x /tmp/import-letsencrypt.sh \
+&& /tmp/import-letsencrypt.sh \
+&& rm /tmp/import-letsencrypt.sh
+
 WORKDIR /
